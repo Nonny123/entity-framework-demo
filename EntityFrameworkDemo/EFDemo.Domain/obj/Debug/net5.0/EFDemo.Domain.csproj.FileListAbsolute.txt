@@ -1,0 +1,12 @@
+C:\Users\NONSO\source\repos\entity-framework-demo\EntityFrameworkDemo\EFDemo.Domain\bin\Debug\net5.0\EFDemo.Domain.deps.json
+C:\Users\NONSO\source\repos\entity-framework-demo\EntityFrameworkDemo\EFDemo.Domain\bin\Debug\net5.0\EFDemo.Domain.dll
+C:\Users\NONSO\source\repos\entity-framework-demo\EntityFrameworkDemo\EFDemo.Domain\bin\Debug\net5.0\ref\EFDemo.Domain.dll
+C:\Users\NONSO\source\repos\entity-framework-demo\EntityFrameworkDemo\EFDemo.Domain\bin\Debug\net5.0\EFDemo.Domain.pdb
+C:\Users\NONSO\source\repos\entity-framework-demo\EntityFrameworkDemo\EFDemo.Domain\obj\Debug\net5.0\EFDemo.Domain.csproj.AssemblyReference.cache
+C:\Users\NONSO\source\repos\entity-framework-demo\EntityFrameworkDemo\EFDemo.Domain\obj\Debug\net5.0\EFDemo.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\NONSO\source\repos\entity-framework-demo\EntityFrameworkDemo\EFDemo.Domain\obj\Debug\net5.0\EFDemo.Domain.AssemblyInfoInputs.cache
+C:\Users\NONSO\source\repos\entity-framework-demo\EntityFrameworkDemo\EFDemo.Domain\obj\Debug\net5.0\EFDemo.Domain.AssemblyInfo.cs
+C:\Users\NONSO\source\repos\entity-framework-demo\EntityFrameworkDemo\EFDemo.Domain\obj\Debug\net5.0\EFDemo.Domain.csproj.CoreCompileInputs.cache
+C:\Users\NONSO\source\repos\entity-framework-demo\EntityFrameworkDemo\EFDemo.Domain\obj\Debug\net5.0\EFDemo.Domain.dll
+C:\Users\NONSO\source\repos\entity-framework-demo\EntityFrameworkDemo\EFDemo.Domain\obj\Debug\net5.0\ref\EFDemo.Domain.dll
+C:\Users\NONSO\source\repos\entity-framework-demo\EntityFrameworkDemo\EFDemo.Domain\obj\Debug\net5.0\EFDemo.Domain.pdb

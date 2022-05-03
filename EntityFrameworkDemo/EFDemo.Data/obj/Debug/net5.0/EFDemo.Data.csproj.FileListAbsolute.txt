@@ -1,0 +1,17 @@
+C:\Users\NONSO\source\repos\entity-framework-demo\EntityFrameworkDemo\EFDemo.Data\bin\Debug\net5.0\EFDemo.Data.deps.json
+C:\Users\NONSO\source\repos\entity-framework-demo\EntityFrameworkDemo\EFDemo.Data\bin\Debug\net5.0\EFDemo.Data.runtimeconfig.json
+C:\Users\NONSO\source\repos\entity-framework-demo\EntityFrameworkDemo\EFDemo.Data\bin\Debug\net5.0\EFDemo.Data.runtimeconfig.dev.json
+C:\Users\NONSO\source\repos\entity-framework-demo\EntityFrameworkDemo\EFDemo.Data\bin\Debug\net5.0\EFDemo.Data.dll
+C:\Users\NONSO\source\repos\entity-framework-demo\EntityFrameworkDemo\EFDemo.Data\bin\Debug\net5.0\ref\EFDemo.Data.dll
+C:\Users\NONSO\source\repos\entity-framework-demo\EntityFrameworkDemo\EFDemo.Data\bin\Debug\net5.0\EFDemo.Data.pdb
+C:\Users\NONSO\source\repos\entity-framework-demo\EntityFrameworkDemo\EFDemo.Data\bin\Debug\net5.0\EFDemo.Domain.dll
+C:\Users\NONSO\source\repos\entity-framework-demo\EntityFrameworkDemo\EFDemo.Data\bin\Debug\net5.0\EFDemo.Domain.pdb
+C:\Users\NONSO\source\repos\entity-framework-demo\EntityFrameworkDemo\EFDemo.Data\obj\Debug\net5.0\EFDemo.Data.csproj.AssemblyReference.cache
+C:\Users\NONSO\source\repos\entity-framework-demo\EntityFrameworkDemo\EFDemo.Data\obj\Debug\net5.0\EFDemo.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\NONSO\source\repos\entity-framework-demo\EntityFrameworkDemo\EFDemo.Data\obj\Debug\net5.0\EFDemo.Data.AssemblyInfoInputs.cache
+C:\Users\NONSO\source\repos\entity-framework-demo\EntityFrameworkDemo\EFDemo.Data\obj\Debug\net5.0\EFDemo.Data.AssemblyInfo.cs
+C:\Users\NONSO\source\repos\entity-framework-demo\EntityFrameworkDemo\EFDemo.Data\obj\Debug\net5.0\EFDemo.Data.csproj.CoreCompileInputs.cache
+C:\Users\NONSO\source\repos\entity-framework-demo\EntityFrameworkDemo\EFDemo.Data\obj\Debug\net5.0\EFDemo.Data.dll
+C:\Users\NONSO\source\repos\entity-framework-demo\EntityFrameworkDemo\EFDemo.Data\obj\Debug\net5.0\ref\EFDemo.Data.dll
+C:\Users\NONSO\source\repos\entity-framework-demo\EntityFrameworkDemo\EFDemo.Data\obj\Debug\net5.0\EFDemo.Data.pdb
+C:\Users\NONSO\source\repos\entity-framework-demo\EntityFrameworkDemo\EFDemo.Data\obj\Debug\net5.0\EFDemo.Data.genruntimeconfig.cache
