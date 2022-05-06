@@ -19,13 +19,87 @@ namespace EFConsoleDemo
             //await AddNewTeamsWithLeague();
 
             //await SimpleSelectQuery()
-            
-            await QueryFilters();
+
+            //await QueryFilters();
+
+            //await AdditionalExecutionMethods();
+
+            //await AlternativeLinqSyntax();
+
+            //await UpdateLeagueRecord();
+
+            await UpdateTeamRecord();
 
             Console.WriteLine("press any key");
             Console.ReadKey();
         }
 
+        private static async Task UpdateTeamRecord()
+        {
+            var team = new Team
+            {
+                Id = 4,
+                Name = "Arsenal",
+                LeagueId = 1
+            };
+            context.Teams.Update(team);
+            await context.SaveChangesAsync();
+        }
+
+        private static async Task GetRecord()
+        {
+            var league = await context.Leagues.FindAsync(2);
+            Console.WriteLine($"{league.Id} . {league.Name}");
+        }
+
+        private static async Task UpdateLeagueRecord()
+        {
+            var league = await context.Leagues.FindAsync(2);
+
+            league.Name = "Nigerian Premiership";
+
+            await context.SaveChangesAsync();
+
+            await GetRecord();
+        }
+
+
+        static async Task AlternativeLinqSyntax()
+        {
+            Console.WriteLine($"Enter Team Name (Or Part Of): ");
+            var teamName = Console.ReadLine();
+
+            var teams = await (from i in context.Teams
+                                   //where i.Name == ""
+                               where EF.Functions.Like(i.Name, $"%{teamName}%")
+                               select i).ToListAsync();
+
+            foreach(var team in teams)
+            {
+                Console.WriteLine($"{team.Id} . {team.Name}");
+            }
+        }
+
+
+        static async Task AdditionalExecutionMethods()
+        {
+            //var l = context.Leagues.Where(q => q.Name.Contains("A")).FirstOrDefaultAsync();
+            var leagues = context.Leagues;
+            var list = await leagues.ToListAsync();
+            var first = await leagues.FindAsync();
+            var firstOrDefault = await leagues.FirstOrDefaultAsync();
+            var single = await leagues.SingleAsync();
+            var singleOrDefault = await leagues.SingleOrDefaultAsync();
+
+            var count = await leagues.CountAsync();
+            var longCount = await leagues.LongCountAsync();
+            var min = await leagues.MinAsync();
+            var max = await leagues.MaxAsync();
+
+            var league = await leagues.FindAsync(1);
+
+
+        }
 
         static async Task QueryFilters()
         {
