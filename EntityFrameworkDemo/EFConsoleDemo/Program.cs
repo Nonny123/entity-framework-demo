@@ -28,11 +28,31 @@ namespace EFConsoleDemo
 
             //await UpdateLeagueRecord();
 
-            await UpdateTeamRecord();
+            //await UpdateTeamRecord();
+
+            //await Delete();
+
+            await DeleteWithRelationship();
 
             Console.WriteLine("press any key");
             Console.ReadKey();
         }
+
+        private static async Task Delete()
+        {
+            var league = await context.Leagues.FindAsync(4);
+            context.Leagues.Remove(league);
+            await context.SaveChangesAsync();
+        }
+
+        private static async Task DeleteWithRelationship()
+        {
+            var league = await context.Leagues.FindAsync(5);
+            context.Leagues.Remove(league);
+            await context.SaveChangesAsync();
+        }
+
+
 
         private static async Task UpdateTeamRecord()
         {
