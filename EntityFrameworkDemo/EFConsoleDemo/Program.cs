@@ -32,10 +32,28 @@ namespace EFConsoleDemo
 
             //await Delete();
 
-            await DeleteWithRelationship();
+            //await DeleteWithRelationship();
 
             Console.WriteLine("press any key");
             Console.ReadKey();
+        }
+
+        private static async Task TrackingVsNoTracking()
+        {
+            var withTracking = await context.Teams.FirstOrDefaultAsync(q => q.Id == 2);
+
+            //releases memory and speeds up performance because objects are not tracked
+            var withNoTracking = await context.Teams.AsNoTracking().FirstOrDefaultAsync(q => q.Id == 4);
+
+            withTracking.Name = "";
+            withNoTracking.Name = "";
+
+            var entriesBeforeSave = context.ChangeTracker.Entries();
+
+            await context.SaveChangesAsync();
+
+            var entriesAfterSave = context.ChangeTracker.Entries();
+
         }
 
         private static async Task Delete()
