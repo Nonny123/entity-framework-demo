@@ -15,3 +15,4 @@ C:\Users\NONSO\source\repos\entity-framework-demo\EntityFrameworkDemo\EFDemo.Dat
 C:\Users\NONSO\source\repos\entity-framework-demo\EntityFrameworkDemo\EFDemo.Data\obj\Debug\net5.0\ref\EFDemo.Data.dll
 C:\Users\NONSO\source\repos\entity-framework-demo\EntityFrameworkDemo\EFDemo.Data\obj\Debug\net5.0\EFDemo.Data.pdb
 C:\Users\NONSO\source\repos\entity-framework-demo\EntityFrameworkDemo\EFDemo.Data\obj\Debug\net5.0\EFDemo.Data.genruntimeconfig.cache
+C:\Users\NONSO\source\repos\entity-framework-demo\EntityFrameworkDemo\EFDemo.Data\obj\Debug\net5.0\EFDemo.Data.csproj.CopyComplete

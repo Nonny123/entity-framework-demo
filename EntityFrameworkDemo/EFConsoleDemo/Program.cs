@@ -34,6 +34,14 @@ namespace EFConsoleDemo
 
             //await DeleteWithRelationship();
 
+            //await AddNewTeamsWithLeagueId();
+
+            //await AddNewLeagueWithTeams();
+
+            //await AddNewMatches();
+
+            //await AddNewCoach();
+
             Console.WriteLine("press any key");
             Console.ReadKey();
         }
@@ -70,8 +78,6 @@ namespace EFConsoleDemo
             await context.SaveChangesAsync();
         }
 
-
-
         private static async Task UpdateTeamRecord()
         {
             var team = new Team
@@ -101,7 +107,6 @@ namespace EFConsoleDemo
             await GetRecord();
         }
 
-
         static async Task AlternativeLinqSyntax()
         {
             Console.WriteLine($"Enter Team Name (Or Part Of): ");
@@ -117,7 +122,6 @@ namespace EFConsoleDemo
                 Console.WriteLine($"{team.Id} . {team.Name}");
             }
         }
-
 
         static async Task AdditionalExecutionMethods()
         {
@@ -209,6 +213,69 @@ namespace EFConsoleDemo
             var league = new League { Name = "Bundesliga" };
             var team = new Team { Name = "Bayern Munich", League = league };
             await context.AddAsync(team);
+            await context.SaveChangesAsync();
+        }
+
+        //the user selects dropdown for where the team will belong to
+        static async Task AddNewTeamsWithLeagueId()
+        {
+            var team = new Team { Name = "Inter Milan", LeagueId = 3 };
+            await context.AddAsync(team);
+            await context.SaveChangesAsync();
+        }
+
+        //create new league and add some teams in the league
+        static async Task AddNewLeagueWithTeams()
+        {
+            var teams = new List<Team> {
+                new Team
+                {
+                    Name = "PSG"
+                },
+                new Team
+                {
+                    Name = "Lyon"
+                },
+                new Team
+                {
+                    Name = "Lille"
+                }
+            };
+            var league = new League { Name = "French Ligue One", Teams = teams };
+            await context.AddAsync(league);
+            await context.SaveChangesAsync();
+        }
+
+        static async Task AddNewMatches()
+        {
+            //Bundesliga matches
+            var matches = new List<Match>
+            {
+                new Match
+                {
+                    AwayTeamId = 7, HomeTeamId = 8, Date = new DateTime(2022, 08, 08)
+                },
+                new Match
+                {
+                    AwayTeamId = 9, HomeTeamId = 13, Date = new DateTime(2022, 08, 09)
+                },
+                new Match
+                {
+                    AwayTeamId = 14, HomeTeamId = 15, Date = new DateTime(2022, 08, 10)
+                }
+            };
+            await context.AddRangeAsync(matches); //AddRange is for adding list of items
+            await context.SaveChangesAsync();
+        }
+
+        static async Task AddNewCoach()
+        {
+            var coach1 = new Coach { Name = "Mikel Arterta", TeamId = 4 };
+            await context.AddAsync(coach1);
+
+            var coach2 = new Coach { Name = "Frank Lampard"}; //nullable int -> no team to coach at the moment
+            await context.AddAsync(coach2);
+
             await context.SaveChangesAsync();
         }
     }
