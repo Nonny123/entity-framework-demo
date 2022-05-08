@@ -14,6 +14,8 @@ namespace EFDemo.Domain
         public int LeagueId { get; set; }
         public virtual League League { get; set; } //navigation property
 
+        public virtual Coach Coach { get; set; } //navigation property
+
         public virtual List<Match> HomeMatches { get; set; } //navigation property
 
         public virtual List<Match> AwayMatches { get; set; } //navigation property
