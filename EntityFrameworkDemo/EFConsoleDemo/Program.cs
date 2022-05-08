@@ -42,6 +42,8 @@ namespace EFConsoleDemo
 
             //await AddNewCoach();
 
+            await QueryRelatedRecords();
+
             Console.WriteLine("press any key");
             Console.ReadKey();
         }
@@ -170,7 +172,10 @@ namespace EFConsoleDemo
                 Console.WriteLine($"{league.Id} . {league.Name}");
             }
         }
-        
+
+
+        #region Adding
+
         static async Task AddNewLeague()
         {
             //add new league object
@@ -278,5 +283,41 @@ namespace EFConsoleDemo
 
             await context.SaveChangesAsync();
         }
+
+        #endregion
+
+
+        #region GetRelatedRecords
+
+        //eager loading - Include method
+        static async Task QueryRelatedRecords()
+        {
+            //get many related records
+            //left join - matching value is (league id/team id) - return all rows from teams and only rows from league tables
+            // matching the matching value
+            var league = await context.Leagues.Include(q => q.Teams).ToListAsync();
+
+            //get one related record
+            //left join - matching value is (team id) - return all rows from coach and only rows from team table
+            //matching the matching value
+            var team = await context.Teams
+                .Include(q => q.Coach)
+                .FirstOrDefaultAsync(q => q.Id == 4); //get arsenal with its coach
+
+            //get grandchildern - Team -> Matches -> Home/Away Team
+            var teamsWithMatchesAndOpponentss = await context.Teams
+                .Include(q => q.AwayMatches).ThenInclude(q => q.HomeTeam).ThenInclude(q => q.Coach)
+                .Include(q => q.HomeMatches).ThenInclude(q => q.AwayTeam).ThenInclude(q => q.Coach)
+                .FirstOrDefaultAsync(q => q.Id == 1);
+
+            //get include with filters
+            var teams = await context.Teams
+                .Where(q => q.HomeMatches.Count > 0)
+                .Include(q => q.Coach)
+                .ToListAsync();
+        }
+
+
+        #endregion
     }
 }
