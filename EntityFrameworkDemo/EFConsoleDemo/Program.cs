@@ -67,49 +67,6 @@ namespace EFConsoleDemo
 
         }
 
-        private static async Task Delete()
-        {
-            var league = await context.Leagues.FindAsync(4);
-            context.Leagues.Remove(league);
-            await context.SaveChangesAsync();
-        }
-
-        private static async Task DeleteWithRelationship()
-        {
-            var league = await context.Leagues.FindAsync(5);
-            context.Leagues.Remove(league);
-            await context.SaveChangesAsync();
-        }
-
-        private static async Task UpdateTeamRecord()
-        {
-            var team = new Team
-            {
-                Id = 4,
-                Name = "Arsenal",
-                LeagueId = 1
-            };
-            context.Teams.Update(team);
-            await context.SaveChangesAsync();
-        }
-
-        private static async Task GetRecord()
-        {
-            var league = await context.Leagues.FindAsync(2);
-            Console.WriteLine($"{league.Id} . {league.Name}");
-        }
-
-        private static async Task UpdateLeagueRecord()
-        {
-            var league = await context.Leagues.FindAsync(2);
-
-            league.Name = "Nigerian Premiership";
-
-            await context.SaveChangesAsync();
-
-            await GetRecord();
-        }
-
         static async Task AlternativeLinqSyntax()
         {
             Console.WriteLine($"Enter Team Name (Or Part Of): ");
@@ -126,6 +83,7 @@ namespace EFConsoleDemo
             }
         }
 
+        //methods to actually execute query against database
         static async Task AdditionalExecutionMethods()
         {
             //var l = context.Leagues.Where(q => q.Name.Contains("A")).FirstOrDefaultAsync();
@@ -146,14 +104,7 @@ namespace EFConsoleDemo
 
         }
   
-        static async Task SimpleSelectQuery()
-        {
-            var leagues = await context.Leagues.ToListAsync(); // ToList executes the query, converts to list of objects, then the database conection closes
-            foreach (var league in leagues)
-            {
-                Console.WriteLine($"{league.Id} . {league.Name}");
-            }
-        }
+       
 
 
         #region Adding
@@ -268,6 +219,22 @@ namespace EFConsoleDemo
 
         #endregion
 
+        #region Find&Get
+        private static async Task FindRecord()
+        {
+            var league = await context.Leagues.FindAsync(2);
+            Console.WriteLine($"{league.Id} . {league.Name}");
+        }
+        static async Task SimpleSelectQuery()
+        {
+            var leagues = await context.Leagues.ToListAsync(); // ToList executes the query, converts to list of objects, then the database conection closes
+            foreach (var league in leagues)
+            {
+                Console.WriteLine($"{league.Id} . {league.Name}");
+            }
+        }
+
+        #endregion
 
         #region GetRelatedRecords
 
@@ -344,7 +311,6 @@ namespace EFConsoleDemo
 
         #endregion
 
-
         #region Filtering
 
         static async Task QueryFilters()
@@ -372,6 +338,57 @@ namespace EFConsoleDemo
         static async Task FilteringWithRelatedData()
         {
            var league = await context.Leagues.Where(q => q.Teams.Any(x => x.Name.Contains("Arsen"))).ToListAsync();
+        }
+
+        #endregion
+
+        #region Update
+
+        private static async Task UpdateTeamRecord()
+        {
+            var team = new Team
+            {
+                Id = 4,
+                Name = "Arsenal",
+                LeagueId = 1
+            };
+            context.Teams.Update(team);
+            await context.SaveChangesAsync();
+        }
+
+        private static async Task GetRecord()
+        {
+            var league = await context.Leagues.FindAsync(2);
+            Console.WriteLine($"{league.Id} . {league.Name}");
+        }
+
+        private static async Task UpdateLeagueRecord()
+        {
+            var league = await context.Leagues.FindAsync(2);
+
+            league.Name = "Nigerian Premiership";
+
+            await context.SaveChangesAsync();
+
+            await GetRecord();
+        }
+
+        #endregion
+
+        #region Delete
+
+        private static async Task Delete()
+        {
+            var league = await context.Leagues.FindAsync(4);
+            context.Leagues.Remove(league);
+            await context.SaveChangesAsync();
+        }
+
+        private static async Task DeleteWithRelationship()
+        {
+            var league = await context.Leagues.FindAsync(5);
+            context.Leagues.Remove(league);
+            await context.SaveChangesAsync();
         }
 
         #endregion

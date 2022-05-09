@@ -66,3 +66,4 @@ C:\Users\NONSO\source\repos\entity-framework-demo\EntityFrameworkDemo\EFConsoleD
 C:\Users\NONSO\source\repos\entity-framework-demo\EntityFrameworkDemo\EFConsoleDemo\obj\Debug\net5.0\EFConsoleDemo.genruntimeconfig.cache
 C:\Users\NONSO\source\repos\entity-framework-demo\EntityFrameworkDemo\EFConsoleDemo\bin\Debug\net5.0\Humanizer.dll
 C:\Users\NONSO\source\repos\entity-framework-demo\EntityFrameworkDemo\EFConsoleDemo\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\NONSO\source\repos\entity-framework-demo\EntityFrameworkDemo\EFConsoleDemo\obj\Debug\net5.0\EFConsoleDemo.csproj.CopyComplete
