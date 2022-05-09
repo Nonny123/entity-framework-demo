@@ -1,5 +1,6 @@
 ﻿using EFDemo.Data;
 using EFDemo.Domain;
+using EFDemo.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -144,26 +145,7 @@ namespace EFConsoleDemo
 
 
         }
-
-        static async Task QueryFilters()
-        {
-            //Console.WriteLine($"Enter League Name: ");
-            Console.WriteLine($"Enter League Name (Or Part Of): ");
-            var leagueName = Console.ReadLine();
-            var exactMatches = await context.Leagues.Where(q => q.Name.Equals(leagueName)).ToListAsync();
-            foreach (var league in exactMatches)
-            {
-                Console.WriteLine($"{league.Id} . {league.Name}");
-            }
-
-            //var partialMatches = await context.Leagues.Where(q => q.Name.Contains(leagueName)).ToListAsync();
-            var partialMatches = await context.Leagues.Where(q => EF.Functions.Like(q.Name,$"%{leagueName}%")).ToListAsync();
-            foreach (var league in partialMatches)
-            {
-                Console.WriteLine($"{league.Id} . {league.Name}");
-            }
-        }
-        
+  
         static async Task SimpleSelectQuery()
         {
             var leagues = await context.Leagues.ToListAsync(); // ToList executes the query, converts to list of objects, then the database conection closes
@@ -317,6 +299,80 @@ namespace EFConsoleDemo
                 .ToListAsync();
         }
 
+
+        #endregion
+
+        #region ProjectionsToOtherTypes/AnonymousTypes
+
+        static async Task SelectOneProperty()
+        {
+            var teams = await context.Teams.Select(q => q.Name).ToListAsync();
+        }
+
+        static async Task AnonymousProjection()
+        {
+            var teams = await context.Teams.Include(q => q.Coach).Select( //project to a type/object/anonymous object so you can select more columns
+                q => 
+                new { 
+                        TeamName = q.Name,
+                        CoachName = q.Coach.Name
+                    }
+                ).ToListAsync();
+
+            foreach (var item in teams)
+            {
+                Console.WriteLine($"Team: {item.TeamName} | Coach: {item.CoachName}");
+            }
+        }
+
+        static async Task StrongTypedProjection()
+        {
+            var teams = await context.Teams.Include(q => q.Coach).Include(q => q.League).Select( //project to a type/object/anonymous object so you can select more columns
+                q =>
+                new TeamDetail{
+                    Name = q.Name,
+                    CoachName = q.Coach.Name,
+                    LeagueName = q.League.Name
+                }
+                ).ToListAsync();
+
+            foreach (var item in teams)
+            {
+                Console.WriteLine($"Team: {item.Name} | Coach: {item.CoachName} | League: {item.LeagueName}");
+            }
+        }
+
+        #endregion
+
+
+        #region Filtering
+
+        static async Task QueryFilters()
+        {
+            //Console.WriteLine($"Enter League Name: ");
+            Console.WriteLine($"Enter League Name (Or Part Of): ");
+            var leagueName = Console.ReadLine();
+            var exactMatches = await context.Leagues.Where(q => q.Name.Equals(leagueName)).ToListAsync();
+            foreach (var league in exactMatches)
+            {
+                Console.WriteLine($"{league.Id} . {league.Name}");
+            }
+
+            //var partialMatches = await context.Leagues.Where(q => q.Name.Contains(leagueName)).ToListAsync();
+            var partialMatches = await context.Leagues.Where(q => EF.Functions.Like(q.Name, $"%{leagueName}%")).ToListAsync();
+            foreach (var league in partialMatches)
+            {
+                Console.WriteLine($"{league.Id} . {league.Name}");
+            }
+        }
+
+
+        //query/show leagues and allow to filter based on league name
+        //Basically use a team's name to get the league/list of leagues which the team belongs to
+        static async Task FilteringWithRelatedData()
+        {
+           var league = await context.Leagues.Where(q => q.Teams.Any(x => x.Name.Contains("Arsen"))).ToListAsync();
+        }
 
         #endregion
     }
