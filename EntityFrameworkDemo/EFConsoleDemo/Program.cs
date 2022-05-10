@@ -43,11 +43,20 @@ namespace EFConsoleDemo
 
             //await AddNewCoach();
 
-            await QueryRelatedRecords();
+            //await QueryRelatedRecords();
+
+            await QueryView();
 
             Console.WriteLine("press any key");
             Console.ReadKey();
         }
+
+
+        static async Task QueryView()
+        {
+            var details = await context.TeamsCoachesLeagues.ToListAsync();
+        }
+
 
         private static async Task TrackingVsNoTracking()
         {
@@ -66,46 +75,6 @@ namespace EFConsoleDemo
             var entriesAfterSave = context.ChangeTracker.Entries();
 
         }
-
-        static async Task AlternativeLinqSyntax()
-        {
-            Console.WriteLine($"Enter Team Name (Or Part Of): ");
-            var teamName = Console.ReadLine();
-
-            var teams = await (from i in context.Teams
-                                   //where i.Name == ""
-                               where EF.Functions.Like(i.Name, $"%{teamName}%")
-                               select i).ToListAsync();
-
-            foreach(var team in teams)
-            {
-                Console.WriteLine($"{team.Id} . {team.Name}");
-            }
-        }
-
-        //methods to actually execute query against database
-        static async Task AdditionalExecutionMethods()
-        {
-            //var l = context.Leagues.Where(q => q.Name.Contains("A")).FirstOrDefaultAsync();
-            var leagues = context.Leagues;
-            var list = await leagues.ToListAsync();
-            var first = await leagues.FindAsync();
-            var firstOrDefault = await leagues.FirstOrDefaultAsync();
-            var single = await leagues.SingleAsync();
-            var singleOrDefault = await leagues.SingleOrDefaultAsync();
-
-            var count = await leagues.CountAsync();
-            var longCount = await leagues.LongCountAsync();
-            var min = await leagues.MinAsync();
-            var max = await leagues.MaxAsync();
-
-            var league = await leagues.FindAsync(1);
-
-
-        }
-  
-       
-
 
         #region Adding
 
@@ -233,6 +202,42 @@ namespace EFConsoleDemo
                 Console.WriteLine($"{league.Id} . {league.Name}");
             }
         }
+
+        static async Task AlternativeLinqSyntax()
+        {
+            Console.WriteLine($"Enter Team Name (Or Part Of): ");
+            var teamName = Console.ReadLine();
+
+            var teams = await (from i in context.Teams
+                                   //where i.Name == ""
+                               where EF.Functions.Like(i.Name, $"%{teamName}%")
+                               select i).ToListAsync();
+
+            foreach (var team in teams)
+            {
+                Console.WriteLine($"{team.Id} . {team.Name}");
+            }
+        }
+
+        //methods to actually execute query against database
+        static async Task AdditionalExecutionMethods()
+        {
+            //var l = context.Leagues.Where(q => q.Name.Contains("A")).FirstOrDefaultAsync();
+            var leagues = context.Leagues;
+            var list = await leagues.ToListAsync();
+            var first = await leagues.FindAsync();
+            var firstOrDefault = await leagues.FirstOrDefaultAsync();
+            var single = await leagues.SingleAsync();
+            var singleOrDefault = await leagues.SingleOrDefaultAsync();
+
+            var count = await leagues.CountAsync();
+            var longCount = await leagues.LongCountAsync();
+            var min = await leagues.MinAsync();
+            var max = await leagues.MaxAsync();
+
+            var league = await leagues.FindAsync(1);
+        }
+
 
         #endregion
 
