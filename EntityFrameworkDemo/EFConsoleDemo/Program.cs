@@ -45,7 +45,9 @@ namespace EFConsoleDemo
 
             //await QueryRelatedRecords();
 
-            await QueryView();
+            //await QueryView();
+
+            await RawSQLQuery();
 
             Console.WriteLine("press any key");
             Console.ReadKey();
@@ -55,6 +57,15 @@ namespace EFConsoleDemo
         static async Task QueryView()
         {
             var details = await context.TeamsCoachesLeagues.ToListAsync();
+        }
+
+        static async Task RawSQLQuery()
+        {
+            var name = "AS Roma";
+            var teams1 = await context.Teams.FromSqlRaw($"select * from Teams where name = '{name}'") //single quotation to escape the keyword AS in AS Roma
+                .Include(q => q.Coach).ToListAsync();
+
+            var teams2 = await context.Teams.FromSqlInterpolated($"select * from Teams where name = {name}").ToListAsync();//FromSqlInterpolated will handle single quotes and parameterization of the query to prevent sql injection
         }
 
 
