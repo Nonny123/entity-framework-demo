@@ -47,7 +47,7 @@ namespace EFConsoleDemo
 
             //await QueryView();
 
-            await RawSQLQuery();
+            //await RawSQLQuery();
 
             Console.WriteLine("press any key");
             Console.ReadKey();
@@ -59,6 +59,7 @@ namespace EFConsoleDemo
             var details = await context.TeamsCoachesLeagues.ToListAsync();
         }
 
+        //use SQL Query
         static async Task RawSQLQuery()
         {
             var name = "AS Roma";
@@ -68,6 +69,13 @@ namespace EFConsoleDemo
             var teams2 = await context.Teams.FromSqlInterpolated($"select * from Teams where name = {name}").ToListAsync();//FromSqlInterpolated will handle single quotes and parameterization of the query to prevent sql injection
         }
 
+
+        //use stored procedure
+        static async Task ExeStoredProcedure()
+        {
+            var teamId = 3;
+            var result = await context.Coaches.FromSqlRaw("EXEC dbo.sp_CoachName {0}", teamId).ToListAsync();
+        }
 
         private static async Task TrackingVsNoTracking()
         {
